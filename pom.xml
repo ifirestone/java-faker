@@ -3,12 +3,9 @@
     <groupId>com.github.javafaker</groupId>
     <artifactId>javafaker</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3-SNAPSHOT</version>
-    <name>Java Faker</name>
-    <description>
-    	This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
-        It's useful when you're developing a new project and need some pretty data for showcase.
-    </description>
+    <version>2.0</version>
+    <name>JavaFaker</name>
+    <description>Port of Faker to JAVA</description>
     <url>http://github.com/DiUS/java-faker</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,13 +26,9 @@
     </scm>
     <developers>
         <developer>
-            <id>renshao</id>
-            <name>Ren Shao</name>
-            <email>renshao@gmail.com</email>
-        </developer>
-        <developer>
-            <id>codingricky</id>
-            <name>Ricky Yim</name>
+            <id>ifirestone</id>
+            <name>Ivan Firestone</name>
+            <email>ivan.firestone@fmt.com.do</email>
         </developer>
     </developers>
 
@@ -105,17 +98,17 @@
         </dependency>
     </dependencies>
     <build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-					</configuration>
-				</plugin>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.eluder.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
@@ -146,7 +139,40 @@
                         </execution>
                     </executions>
                 </plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>fully.qualified.MainClass</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
